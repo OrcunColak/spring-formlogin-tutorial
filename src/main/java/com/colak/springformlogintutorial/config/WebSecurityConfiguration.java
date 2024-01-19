@@ -1,17 +1,17 @@
-package com.colak.springformlogintutorial.controller.config;
+package com.colak.springformlogintutorial.config;
 
+import com.colak.springformlogintutorial.userdetailsservice.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @Configuration
 @EnableWebSecurity
@@ -24,14 +24,24 @@ public class WebSecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer
+    public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsServiceImpl userDetailsService) throws Exception {
+
+        http.userDetailsService(userDetailsService)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(toH2Console()).permitAll()
+
                         .requestMatchers("/logout").permitAll()
                         .requestMatchers("/home").hasRole("USER")
                         .requestMatchers("/hello").hasRole("ADMIN")
+
+                        // RBAC Urls
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/public/**").permitAll()
+
                         .anyRequest().authenticated()
-                ).formLogin(formLoginCustomizer -> formLoginCustomizer
+                )
+                .formLogin(formLoginCustomizer -> formLoginCustomizer
                         .loginPage("/login").permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll)
@@ -39,7 +49,7 @@ public class WebSecurityConfiguration {
 
         return http.build();
     }
-
+    /*
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails user1 = User.builder()
@@ -54,4 +64,6 @@ public class WebSecurityConfiguration {
                 .build();
         return new InMemoryUserDetailsManager(user1, user2);
     }
+    https://medium.com/@bubu.tripathy/role-based-access-control-with-spring-security-ca59d2ce80b0
+     */
 }

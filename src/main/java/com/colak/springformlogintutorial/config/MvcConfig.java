@@ -1,4 +1,4 @@
-package com.colak.springformlogintutorial.controller.config;
+package com.colak.springformlogintutorial.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
