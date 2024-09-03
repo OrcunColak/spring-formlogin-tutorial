@@ -1,6 +1,6 @@
-package com.colak.springformlogintutorial.config;
+package com.colak.springtutorial.config;
 
-import com.colak.springformlogintutorial.userdetailsservice.UserDetailsServiceImpl;
+import com.colak.springtutorial.userdetailsservice.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;

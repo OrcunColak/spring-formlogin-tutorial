@@ -1,9 +1,9 @@
-package com.colak.springformlogintutorial;
+package com.colak.springtutorial;
 
-import com.colak.springformlogintutorial.jpa.MyRole;
-import com.colak.springformlogintutorial.jpa.MyUser;
-import com.colak.springformlogintutorial.repository.RoleRepository;
-import com.colak.springformlogintutorial.repository.UserRepository;
+import com.colak.springtutorial.jpa.MyRole;
+import com.colak.springtutorial.jpa.MyUser;
+import com.colak.springtutorial.repository.RoleRepository;
+import com.colak.springtutorial.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
-public class SpringFormloginTutorialApplication implements CommandLineRunner {
+public class SpringTutorialApplication implements CommandLineRunner {
 
     @Autowired
     private UserRepository userRepository;
@@ -24,7 +24,7 @@ public class SpringFormloginTutorialApplication implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringFormloginTutorialApplication.class, args);
+        SpringApplication.run(SpringTutorialApplication.class, args);
     }
 
     @Transactional

@@ -1,6 +1,6 @@
-package com.colak.springformlogintutorial.repository;
+package com.colak.springtutorial.repository;
 
-import com.colak.springformlogintutorial.jpa.MyUser;
+import com.colak.springtutorial.jpa.MyUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,8 +1,8 @@
-package com.colak.springformlogintutorial.userdetailsservice;
+package com.colak.springtutorial.userdetailsservice;
 
-import com.colak.springformlogintutorial.jpa.MyRole;
-import com.colak.springformlogintutorial.jpa.MyUser;
-import com.colak.springformlogintutorial.repository.UserRepository;
+import com.colak.springtutorial.jpa.MyRole;
+import com.colak.springtutorial.jpa.MyUser;
+import com.colak.springtutorial.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
